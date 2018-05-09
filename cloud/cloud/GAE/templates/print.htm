@@ -1,0 +1,136 @@
+{% extends "_base.htm" %}
+
+{% block title %}
+        Random
+{% endblock %}
+
+{% block pageblock %}
+
+
+{% if note %}
+<style type="text/css">
+
+  </style>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <div id="up">
+                <h1>Reslut<br/><br/></h1>
+        </div>
+        <div style="color:red;">
+                <h1>{{note10}}<br/><br/></h1>
+        </div>
+          <style>
+     td {text-align:center}
+     th {text-align:center}
+        </style>
+        <table border="1" width="1250" height="150" bgcolor="#F1E1FF"  align="center">
+        <tr>
+        <th colspan="2">Historical</th>
+        <th colspan="2">Covariance</th>
+        <th colspan="2">Monte Carlo</th>
+        </tr>
+        <tr>
+        <td>95%</td>
+        <td>99%</td>
+        <td>95%</td>
+        <td>99%</td>
+        <td>95%</td>
+        <td>99%</td>
+        </tr>
+        <tr>
+        <td>{{note}}</td>
+        <td>{{note2}}</td>
+        <td>{{note3}}</td>
+        <td>{{note4}}</td>
+        <td>{{note5}}</td>
+        <td>{{note6}}</td>
+        </tr>
+        </table>
+        <script type="text/javascript">
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBasic); 
+
+function drawBasic() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'X');
+      data.addColumn('number', 'growth rates');
+
+      data.addRows({{note7}}
+      );
+
+      var options = {
+        title: 'Return Serial',
+        width: 1250,
+        height: 300,
+        
+        hAxis: {
+          title: 'Time'
+        },
+        vAxis: {
+          title: ''
+        }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+    
+    </script>
+    <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+     function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Time of Day');
+        data.addColumn('number', 'Price');
+
+        data.addRows({{note8}});
+
+
+        var options = {
+          title: 'Time Serial',
+          width: 1250,
+          height: 300,
+          backgroundColor: '#E4E4E4',
+          hAxis: {
+            format: 'M/d/yy',
+            gridlines: {count: 15}
+          },
+          vAxis: {
+            gridlines: {color: 'none'},
+            minValue: 0
+          }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+
+        chart.draw(data, options);
+
+        var button = document.getElementById('change');
+
+        button.onclick = function () {
+
+          // If the format option matches, change it to the new option,
+          // if not, reset it to the original format.
+          options.hAxis.format === 'M/d/yy' ?
+          options.hAxis.format = 'MMM dd, yyyy' :
+          options.hAxis.format = 'M/d/yy';
+
+          chart.draw(data, options);
+        };
+      }
+
+  </script>
+  <body >
+    <div id="chart_div" ></div>  
+    <div id="chart_div2"></div>  
+  </body>
+          
+                {% endif %}
+
+        </div>
+
+{% endblock %}
