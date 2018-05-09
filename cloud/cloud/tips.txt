@@ -1,0 +1,1 @@
+In odrer to enable instance fully activated. It will take about 50s to calculate if users chose EC2 as scalable service. Please be patient.

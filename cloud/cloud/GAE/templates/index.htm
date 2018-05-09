@@ -1,0 +1,47 @@
+{% extends "_base.htm" %}
+
+{% block title %}
+	Page 1
+{% endblock %}
+
+{% block pageblock %}
+
+	<div id="down">
+		<font color="#2F0000" size="6">Cloud Computing (COMM034) Coursework</font>
+<form id="stats" method="post" action="/print">
+	<h2>How much money do you want to invest</h2>
+	<h2>Investment: <input type="number" name="investment" step="0.01" min="0.0" required="required"/> 
+	 name: <select name="name" id="test_select">
+		<option value ="amazon">Amazon</option>
+		<option value ="apple">Apple</option>
+		<option value ="google">Google</option>
+		<option value ="ibm">IBM</option>
+		<option value ="oracle">Oracle</option>
+	</select></h2>
+
+	Choose a method:
+	<label><input  name="radio" type="radio" value="ec2" required="required"/>EC2 </label> 
+	<label><input  name="radio" type="radio" value="lambda" required="required" />Lambda </label>
+	<h3>1.For Historiacl and Covariance</h3>
+	<h3>T:<input type="number" name="T" min="2" max="4970" required="required" ></h3> 
+	<h5>T: number of date points to use</h5>
+	<h3>2.For Minte Carlo</h3>
+	<h3>M:<input type="number" name="M" min="1" required="required"></h3> 
+	<h5>M: Number of Random number</h5>
+	<h3>R:<input type="number" name="R" min="1" max="20" required="required"></h3> 
+	<h5>R: Number of resources</h5>
+	<h4><input type="submit" name="draw" value="Draw Chart" />
+			<input type="submit" name='cancel' value="Cancel"
+			onclick="window.location='/'; return false;" /><br/></h4>
+
+</form>
+		
+		{% if note %}
+		<h3 style="color: #11FFFF">
+			{{ note }}
+		</h3>
+		{% endif %}
+	
+	</div>
+
+{% endblock %}
